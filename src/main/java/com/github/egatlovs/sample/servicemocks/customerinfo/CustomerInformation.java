@@ -1,5 +1,8 @@
 package com.github.egatlovs.sample.servicemocks.customerinfo;
 
+import com.github.egatlovs.variablemanager.annotations.ObjectValue;
+
+@ObjectValue(storeFields = true)
 public class CustomerInformation {
 
     private String forename;
