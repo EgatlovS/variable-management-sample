@@ -7,10 +7,6 @@
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_01qlud2</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:task id="Task_10ezfyv" name=" determine customer data">
-      <bpmn:incoming>SequenceFlow_01qlud2</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0xcoynu</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_01qlud2" sourceRef="StartEvent_1" targetRef="Task_10ezfyv" />
     <bpmn:task id="Task_1ln4tse" name="determine credit">
       <bpmn:incoming>SequenceFlow_0xcoynu</bpmn:incoming>
@@ -27,9 +23,13 @@
       <bpmn:incoming>SequenceFlow_0y9ij7v</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tja89k</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_0y9ij7v" name="yes" sourceRef="ExclusiveGateway_15jc5bb" targetRef="Task_03szjxo" />
+    <bpmn:sequenceFlow id="SequenceFlow_0y9ij7v" name="yes" sourceRef="ExclusiveGateway_15jc5bb" targetRef="Task_03szjxo">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1tja89k" sourceRef="Task_03szjxo" targetRef="Task_1ltyctb" />
-    <bpmn:sequenceFlow id="SequenceFlow_1m4e8gt" name="no" sourceRef="ExclusiveGateway_15jc5bb" targetRef="Task_18dgu5a" />
+    <bpmn:sequenceFlow id="SequenceFlow_1m4e8gt" name="no" sourceRef="ExclusiveGateway_15jc5bb" targetRef="Task_18dgu5a">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:task id="Task_0qrrkdw" name="determine customer address ">
       <bpmn:incoming>SequenceFlow_05ia9ai</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0b1jave</bpmn:outgoing>
@@ -64,6 +64,10 @@
     <bpmn:sequenceFlow id="SequenceFlow_04bln45" sourceRef="Task_1ltyctb" targetRef="ExclusiveGateway_0axo3ei" />
     <bpmn:sequenceFlow id="SequenceFlow_0vlyxs1" sourceRef="Task_18dgu5a" targetRef="ExclusiveGateway_0axo3ei" />
     <bpmn:sequenceFlow id="SequenceFlow_05ia9ai" sourceRef="ExclusiveGateway_0axo3ei" targetRef="Task_0qrrkdw" />
+    <bpmn:serviceTask id="Task_10ezfyv" name="determine customer data" camunda:delegateExpression="${determineCustomerData}">
+      <bpmn:incoming>SequenceFlow_01qlud2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0xcoynu</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Orderprocess">
@@ -73,14 +77,11 @@
           <dc:Bounds x="155" y="138" width="73" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_10ezfyv_di" bpmnElement="Task_10ezfyv">
-        <dc:Bounds x="265" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_01qlud2_di" bpmnElement="SequenceFlow_01qlud2">
         <di:waypoint xsi:type="dc:Point" x="209" y="120" />
         <di:waypoint xsi:type="dc:Point" x="265" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="237" y="99" width="0" height="12" />
+          <dc:Bounds x="192" y="99" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_1ln4tse_di" bpmnElement="Task_1ln4tse">
@@ -90,7 +91,7 @@
         <di:waypoint xsi:type="dc:Point" x="365" y="120" />
         <di:waypoint xsi:type="dc:Point" x="440" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="402.5" y="99" width="0" height="12" />
+          <dc:Bounds x="357.5" y="99" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_15jc5bb_di" bpmnElement="ExclusiveGateway_15jc5bb" isMarkerVisible="true">
@@ -201,6 +202,9 @@
           <dc:Bounds x="1117.5" y="99" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1chhnoz_di" bpmnElement="Task_10ezfyv">
+        <dc:Bounds x="265" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
