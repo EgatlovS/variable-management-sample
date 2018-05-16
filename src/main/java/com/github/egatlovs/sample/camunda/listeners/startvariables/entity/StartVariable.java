@@ -13,17 +13,20 @@ public class StartVariable {
     private String customerNumber;
     private List<Article> articles;
     private BigDecimal totalPrice;
+    private String orderId;
 
     public StartVariable() {
         this.customerNumber = UUID.randomUUID().toString();
         this.articles = new ArrayList<>();
         this.totalPrice = new BigDecimal("220.99");
+        this.orderId = UUID.randomUUID().toString();
     }
 
-    public StartVariable(String customerNumber, List<Article> articles, BigDecimal totalPrice) {
+    public StartVariable(String customerNumber, List<Article> articles, BigDecimal totalPrice, String orderId) {
         this.customerNumber = customerNumber;
         this.articles = articles;
         this.totalPrice = totalPrice;
+        this.orderId = orderId;
     }
 
     public String getCustomerNumber() {
@@ -48,5 +51,13 @@ public class StartVariable {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }

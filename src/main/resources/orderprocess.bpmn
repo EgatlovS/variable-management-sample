@@ -8,10 +8,6 @@
       <bpmn:outgoing>SequenceFlow_01qlud2</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_01qlud2" sourceRef="StartEvent_1" targetRef="Task_10ezfyv" />
-    <bpmn:task id="Task_1ln4tse" name="determine credit">
-      <bpmn:incoming>SequenceFlow_0xcoynu</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0qfi8a9</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_0xcoynu" sourceRef="Task_10ezfyv" targetRef="Task_1ln4tse" />
     <bpmn:exclusiveGateway id="ExclusiveGateway_15jc5bb" name="credit not enough?">
       <bpmn:incoming>SequenceFlow_0qfi8a9</bpmn:incoming>
@@ -68,6 +64,10 @@
       <bpmn:incoming>SequenceFlow_0y9ij7v</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tja89k</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_1ln4tse" name="determine credit" camunda:delegateExpression="${determineCredit}">
+      <bpmn:incoming>SequenceFlow_0xcoynu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0qfi8a9</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Orderprocess">
@@ -84,9 +84,6 @@
           <dc:Bounds x="192" y="99" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_1ln4tse_di" bpmnElement="Task_1ln4tse">
-        <dc:Bounds x="440" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0xcoynu_di" bpmnElement="SequenceFlow_0xcoynu">
         <di:waypoint xsi:type="dc:Point" x="365" y="120" />
         <di:waypoint xsi:type="dc:Point" x="440" y="120" />
@@ -104,7 +101,7 @@
         <di:waypoint xsi:type="dc:Point" x="540" y="120" />
         <di:waypoint xsi:type="dc:Point" x="602" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="571" y="99" width="0" height="12" />
+          <dc:Bounds x="526" y="99" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0y9ij7v_di" bpmnElement="SequenceFlow_0y9ij7v">
@@ -204,6 +201,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1j4sbr1_di" bpmnElement="Task_03szjxo">
         <dc:Bounds x="724" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_128or8l_di" bpmnElement="Task_1ln4tse">
+        <dc:Bounds x="440" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
