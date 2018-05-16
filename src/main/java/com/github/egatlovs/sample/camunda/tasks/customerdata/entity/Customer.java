@@ -21,4 +21,11 @@ public class Customer {
     public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerNumber='" + customerNumber + '\'' +
+                '}';
+    }
 }
